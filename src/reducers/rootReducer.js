@@ -7,24 +7,16 @@ const initState = {
 }
 
 const rootReducer = (state = initState, action) => {
+  if (action.type === 'DELETE_POST') {
+    let newPosts = state.posts.filter(post => {
+      return action.id !== post.id
+    })
+    return {
+      ...state,
+      posts: newPosts
+    };
+  }
   return state;
-  // if (action.type === 'ADD_TODO') {
-  //   return {
-  //     ...state,
-  //     todos: [...state.todos, action.todo]
-  //   }
-  // }
-
 }
-
-// store.susbscribe() => {
-//   console.log(store.getState());
-// }
-
-// const store = createStore(myreducer)
-
-// const todoAction = { type: 'ADD_TODO', todo: 'buy something' }
-
-// store.dispatch(todoAction);
 
 export default rootReducer;
